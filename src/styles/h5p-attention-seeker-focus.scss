@@ -1,0 +1,28 @@
+.h5p-attention-seeker {
+
+  &.h5p-attention-seeker-focus {
+
+    &.h5p-attention-seeker-preparation {
+      pointer-events: none;
+      z-index: 9999 !important;
+    }
+
+    &.h5p-attention-seeker-animation {
+      animation: focus;
+      animation-duration: 1s;
+    }
+
+    @keyframes focus {
+      from {}
+      40% {
+        box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);
+        border-radius: 5px;
+      }
+      60% {
+        box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);
+        border-radius: 5px;
+      }
+      to {}
+    }
+  }
+}

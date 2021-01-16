@@ -1,0 +1,33 @@
+// Based on animate.css by Daniel Eden, MIT License
+.h5p-attention-seeker {
+
+  &.h5p-attention-seeker-shakex {
+
+    &.h5p-attention-seeker-animation {
+      animation: shakex;
+      animation-duration: 1s;
+    }
+
+    @keyframes shakex {
+      from,
+      to {
+        transform: translate3d(0, 0, 0);
+      }
+
+      10%,
+      30%,
+      50%,
+      70%,
+      90% {
+        transform: translate3d(-10px, 0, 0);
+      }
+
+      20%,
+      40%,
+      60%,
+      80% {
+        transform: translate3d(10px, 0, 0);
+      }
+    }
+  }
+}

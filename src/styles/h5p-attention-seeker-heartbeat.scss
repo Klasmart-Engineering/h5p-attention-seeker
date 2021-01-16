@@ -1,0 +1,34 @@
+// Based on animate.css by Daniel Eden, MIT License
+.h5p-attention-seeker {
+
+  &.h5p-attention-seeker-heartbeat {
+
+    &.h5p-attention-seeker-animation {
+      animation: heartbeat;
+      animation-duration: 1.3s;
+      animation-timing-function: ease-in-out;
+    }
+
+    @keyframes heartbeat {
+      0% {
+        transform: scale(1);
+      }
+
+      14% {
+        transform: scale(1.3);
+      }
+
+      28% {
+        transform: scale(1);
+      }
+
+      42% {
+        transform: scale(1.3);
+      }
+
+      70% {
+        transform: scale(1);
+      }
+    }
+  }
+}

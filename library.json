@@ -1,0 +1,24 @@
+{
+  "title": "Attention Seeker",
+  "description": "Help to seek users' attention",
+  "majorVersion": 0,
+  "minorVersion": 1,
+  "patchVersion": 0,
+  "runnable": 0,
+  "author": "KidsLoop, Oliver Tacke",
+  "license": "MIT",
+  "machineName": "H5P.AttentionSeeker",
+  "embedTypes": [
+    "iframe"
+  ],
+  "preloadedJs": [
+    {
+      "path": "dist/h5p-attention-seeker.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "dist/h5p-attention-seeker.css"
+    }
+  ]
+}

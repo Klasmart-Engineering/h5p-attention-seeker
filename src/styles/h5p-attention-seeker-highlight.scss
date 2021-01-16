@@ -1,0 +1,49 @@
+$border-width: 1px;
+
+.h5p-attention-seeker {
+
+  &.h5p-attention-seeker-highlight {
+
+    &.h5p-attention-seeker-preparation {
+      pointer-events: none;
+    }
+
+    &.h5p-attention-seeker-animation {
+      animation: highlight;
+      animation-duration: 1s;
+      animation-timing-function: ease-in-out;
+
+      .h5p-attention-seeker-highlight-element {
+        animation: highlight-element;
+        animation-duration: 1s;
+        display: block;
+
+        @keyframes highlight-element {
+          from {
+          }
+          40% {
+            opacity: 1
+          }
+          60% {
+            opacity: 1
+          }
+          to {}
+        }
+      }
+    }
+
+    @keyframes highlight {
+      from {}
+      to {}
+    }
+
+    .h5p-attention-seeker-highlight-element {
+      background: rgba(255, 224, 128, 0.35);
+      border: $border-width solid #ffe080;
+      border-radius: 5px;
+      box-shadow: 0 0 17px 0 rgba(255, 224, 128, 0.5);
+      height: calc(100% - 2 * #{$border-width});
+      width: calc(100% - 2 * #{$border-width});
+    }
+  }
+}
