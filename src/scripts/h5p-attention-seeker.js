@@ -80,10 +80,9 @@ export default class AttentionSeeker extends H5P.EventDispatcher {
    * Unregister all workers.
    */
   unregisterAll() {
-    for (let i = this.workers.length - 1; i >= 0; i--) {
-      this.workers[i].worker.remove();
-      this.workers.pop();
-    }
+    this.workers.forEach(worker => {
+      worker.worker.remove(worker.id);
+    });
   }
 
   /**
@@ -155,6 +154,7 @@ export default class AttentionSeeker extends H5P.EventDispatcher {
    * @param {number} id Id of worker that has been removed.
    */
   handleWorkerRemoved(id) {
+    this.workers = this.workers.filter(worker => worker.id !== id);
     this.trigger('removed', id);
   }
 }

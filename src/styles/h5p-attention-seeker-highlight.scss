@@ -43,6 +43,9 @@ $border-width: 1px;
       border-radius: 5px;
       box-shadow: 0 0 17px 0 rgba(255, 224, 128, 0.5);
       height: calc(100% - 2 * #{$border-width});
+      left: 0;
+      position: absolute;
+      top: 0;
       width: calc(100% - 2 * #{$border-width});
     }
   }

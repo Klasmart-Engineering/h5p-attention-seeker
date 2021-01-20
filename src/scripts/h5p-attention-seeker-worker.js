@@ -39,8 +39,7 @@ export default class AttentionSeekerWorker {
     this.callbacks.onAnimationEnded = callbacks.onAnimationEnded || (() => {});
     this.callbacks.onWorkerRemoved = callbacks.onWorkerRemoved || (() => {});
 
-    // Track whether worker has been registered
-    this.isRegistered = false;
+    this.animationEndListener = null;
 
     // Classes for element
     this.params.element.classList.add(`h5p-attention-seeker`);
@@ -61,15 +60,9 @@ export default class AttentionSeekerWorker {
     }
 
     // Detect animation end once only
-    if (!this.isRegistered) {
-      this.params.element.addEventListener('animationend', (event) => {
-        if (event.animationName !== this.params.style) {
-          return;
-        }
-
-        this.ended();
-      });
-      this.isRegistered = true;
+    if (!this.animationEndListener) {
+      this.animationEndListener = this.handleAnimationEnded.bind(this);
+      this.params.element.addEventListener('animationend', this.animationEndListener);
     }
 
     clearTimeout(this.currentTimeout);
@@ -103,14 +96,23 @@ export default class AttentionSeekerWorker {
   remove() {
     clearTimeout(this.currentTimeout);
 
-    if (this.params.element.classList.contains('h5p-attention-seeker-animation')) {
+    if (
+      this.params.element.classList.contains('h5p-attention-seeker-animation') ||
+      this.params.element.classList.contains('h5p-attention-seeker-preparation')
+    ) {
       this.ended();
     }
 
     // Remove DOM traces
     this.params.element.classList.remove(`h5p-attention-seeker`);
     this.params.element.classList.remove(`h5p-attention-seeker-${this.params.style}`);
-    this.params.element.removeChild(this.highlightElement);
+    this.params.element.classList.remove('h5p-attention-seeker-preparation');
+    this.params.element.classList.remove('h5p-attention-seeker-animation');
+    this.params.element.removeEventListener('animationend', this.animationEndListener);
+
+    if (this.highlightElement.parentNode === this.params.element) {
+      this.params.element.removeChild(this.highlightElement);
+    }
 
     this.callbacks.onWorkerRemoved(this.params.id);
   }
@@ -139,5 +141,17 @@ export default class AttentionSeekerWorker {
     if (this.params.repeat <= 0) {
       this.remove();
     }
+  }
+
+  /**
+   * Handle animation ended.
+   * @param {Event} event Event.
+   */
+  handleAnimationEnded(event) {
+    if (event.animationName !== this.params.style) {
+      return;
+    }
+
+    this.ended();
   }
 }
